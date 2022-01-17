@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.Enums;
 
-namespace API.Entities
+namespace API.DTOs
 {
-    public class ExpenseEntry
+    public class ExpenseEntryDto
     {
         public Guid Id { get; init; }
         public string Name { get; set; }

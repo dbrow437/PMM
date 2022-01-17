@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.DTOs;
 using API.Entities;
 using API.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -14,28 +15,29 @@ namespace API.Controllers
     public class ExpenseEntriesController : ControllerBase
     {
         #region Private
-        private readonly InMemExpenseEntriesRepository repository;
+        private readonly IExpenseEntriesRepository repository;
         #endregion
 
         #region Constructor
-        public ExpenseEntriesController()
+        public ExpenseEntriesController(IExpenseEntriesRepository repository)
         {
-            repository = new InMemExpenseEntriesRepository();
+            this.repository = repository;
         }
         #endregion
 
         #region Public Methods
         //Get Entries
         [HttpGet]
-        public ActionResult<IEnumerable<ExpenseEntry>> GetEntries()
+        public ActionResult<IEnumerable<ExpenseEntryDto>> GetEntries()
         {
-            var expenseEntries = repository.GetEntries();
+            var expenseEntries = repository.GetEntries().Select( entry => entry.AsDto());
+
             return Ok(expenseEntries);
         }
 
         //Get Entry
         [HttpGet("{id}")]
-        public ActionResult<ExpenseEntry> GetEntry(Guid id)
+        public ActionResult<ExpenseEntryDto> GetEntry(Guid id)
         {
             var entry = repository.GetEntry(id);
 
@@ -44,7 +46,7 @@ namespace API.Controllers
                 return NotFound();
             }
 
-            return Ok(entry);
+            return Ok(entry.AsDto());
         }
 
         

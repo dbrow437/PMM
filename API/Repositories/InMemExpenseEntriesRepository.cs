@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Entities;
+using API.Enums;
 
 namespace API.Repositories
 {
-    public class InMemExpenseEntriesRepository
+    
+
+    public class InMemExpenseEntriesRepository : IExpenseEntriesRepository
     {
         private readonly List<ExpenseEntry> entries = new()
         {
@@ -15,7 +18,7 @@ namespace API.Repositories
             new ExpenseEntry { Id = Guid.NewGuid(), Name = "Joggers", Amount = 89.99, Date = DateTime.Now, Category = Categories.Retail }
         };
 
-         public IEnumerable<ExpenseEntry> GetEntries()
+        public IEnumerable<ExpenseEntry> GetEntries()
         {
             return entries;
         }

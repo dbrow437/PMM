@@ -1,0 +1,34 @@
+﻿<Properties StartupConfiguration="{9A398084-79BC-4163-B1C7-D6C1DCD08750}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="API/Repositories/InMemExpenseEntriesRepository.cs">
+    <Files>
+      <File FileName="API/Repositories/InMemExpenseEntriesRepository.cs" Line="25" Column="77" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="PersonalMoneyManagement" expanded="True">
+            <Node name="API" expanded="True" selected="True">
+              <Node name="Dependencies" expanded="True" />
+              <Node name="Controllers" expanded="True" />
+              <Node name="Entities" expanded="True">
+                <Node name="Enums" expanded="True" />
+              </Node>
+              <Node name="Properties" expanded="True" />
+              <Node name="Repositories" expanded="True" />
+              <Node name="appsettings.json" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/home/Desktop/PMM/PersonalMoneyManagement/API/Controllers/ExpenseEntriesController.cs" relfile="API/Controllers/ExpenseEntriesController.cs" line="39" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

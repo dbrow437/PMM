@@ -17,7 +17,6 @@ namespace API.Repositories
             new ExpenseEntry { Id = Guid.NewGuid(), Name = "Rent", Amount = 1400, Date = DateTime.Now, Category = Categories.Rent },
             new ExpenseEntry { Id = Guid.NewGuid(), Name = "Joggers", Amount = 89.99, Date = DateTime.Now, Category = Categories.Retail }
         };
-
         public IEnumerable<ExpenseEntry> GetEntries()
         {
             return entries;
@@ -26,6 +25,23 @@ namespace API.Repositories
         public ExpenseEntry GetEntry(Guid id)
         {
             return entries.Where(entry => entry.Id == id).SingleOrDefault();
+        }
+
+         public void CreateEntry(ExpenseEntry entry)
+        {
+            entries.Add(entry);
+        }
+
+        public void UpdateEntry(ExpenseEntry entry)
+        {
+            var index = entries.FindIndex(existingEntry => existingEntry.Id == entry.Id);
+            entries[index] = entry;
+        }
+
+        public void DeleteEntry(Guid id)
+        {
+            var index = entries.FindIndex(existingEntry => existingEntry.Id == id);
+            entries.RemoveAt(index);
         }
     }
 }

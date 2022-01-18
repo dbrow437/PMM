@@ -10,5 +10,8 @@ namespace API.Repositories
     {
         IEnumerable<ExpenseEntry> GetEntries();
         ExpenseEntry GetEntry(Guid id);
+        void CreateEntry(ExpenseEntry entry);
+        void UpdateEntry(ExpenseEntry entry);
+        void DeleteEntry(Guid id);
     }
 }

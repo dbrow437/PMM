@@ -48,14 +48,59 @@ namespace API.Controllers
 
             return Ok(entry.AsDto());
         }
-
-        
-
         //Create Entry
+        [HttpPost]
+        public ActionResult<ExpenseEntryDto> CreateExpenseEntry(CreateExpenseEntryDto entryDto)
+        {
+            ExpenseEntry entry = new()
+            {
+                Id = Guid.NewGuid(),
+                Name = entryDto.Name,
+                Amount = entryDto.Amount,
+                Category = entryDto.Category,
+                Date = DateTimeOffset.UtcNow
+            };
+
+            repository.CreateEntry(entry);
+
+            return Ok(CreatedAtAction(nameof(GetEntry), new { id = entry.Id }, entry.AsDto()));
+        }
 
         //Delete Entry
+        [HttpDelete("{id}")]
+        public ActionResult DeleteExpenseEntry(Guid id)
+        {
+            var existingEntry = repository.GetEntry(id);
+
+            if (existingEntry is null)
+            {
+                return NotFound();
+            }
+
+            repository.DeleteEntry(id);
+
+            return NoContent();
+        }
 
         //Update Entry
+        [HttpPut("{id}")]
+        public ActionResult UpdateExpenseEntry(Guid id, UpdateExpenseEntryDto entryDto)
+        {
+            var existingEntry = repository.GetEntry(id);
+
+            if (existingEntry is null)
+            {
+                return NotFound();
+            }
+
+            existingEntry.Name = entryDto.Name;
+            existingEntry.Amount = entryDto.Amount;
+            existingEntry.Category = entryDto.Category; 
+
+            repository.UpdateEntry(existingEntry);
+
+            return NoContent();
+        }
         #endregion
     }
 }

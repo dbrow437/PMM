@@ -1,1 +1,1 @@
-# PMM
+# Personal Money Management App

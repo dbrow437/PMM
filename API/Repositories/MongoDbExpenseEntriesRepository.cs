@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Entities;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace API.Repositories
@@ -13,6 +14,7 @@ namespace API.Repositories
         private const string databaseName = "expense";
         private const string collectionName = "entries";
         private readonly IMongoCollection<ExpenseEntry> expenseEntriesCollection;
+        private readonly FilterDefinitionBuilder<ExpenseEntry> filterBuilder = Builders<ExpenseEntry>.Filter;
         #endregion
 
         #region Constructor
@@ -31,22 +33,25 @@ namespace API.Repositories
 
         public void DeleteEntry(Guid id)
         {
-            throw new NotImplementedException();
+            var filter = filterBuilder.Eq(entry => entry.Id, id);
+            expenseEntriesCollection.DeleteOne(filter);
         }
 
         public IEnumerable<ExpenseEntry> GetEntries()
         {
-            throw new NotImplementedException();
+            return expenseEntriesCollection.Find(new BsonDocument()).ToList();
         }
 
         public ExpenseEntry GetEntry(Guid id)
         {
-            throw new NotImplementedException();
+            var filter = filterBuilder.Eq(entry => entry.Id, id);
+            return expenseEntriesCollection.Find(filter).SingleOrDefault();
         }
 
         public void UpdateEntry(ExpenseEntry entry)
         {
-            throw new NotImplementedException();
+            var filter = filterBuilder.Eq(existingEntry => existingEntry.Id, entry.Id);
+            expenseEntriesCollection.ReplaceOne(filter, entry);
         }
         #endregion
     }
